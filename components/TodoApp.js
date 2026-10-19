@@ -41,6 +41,10 @@ export default function TodoApp() {
     if (!window.confirm('完了済みの TODO を削除しますか？')) return
     setTodos(todos.filter((todo) => !todo.done))
   }
+function clearAll() {
+  if (!window.confirm('すべての TODO を削除しますか？')) return
+  setTodos([])
+}
 
   const doneCount = todos.filter((todo) => todo.done).length
   const remaining = todos.length - doneCount
@@ -61,6 +65,10 @@ export default function TodoApp() {
       <button onClick={clearDone} disabled={doneCount === 0}>
         完了済みを削除
       </button>
+      <button onClick={clearAll} disabled={todos.length === 0}>
+  すべて削除
+</button>
+
     </div>
   )
 }
