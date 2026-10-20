@@ -23,6 +23,10 @@ export default function TodoApp() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
   }, [todos])
+function clearAll() {
+  if (!window.confirm('すべての TODO を削除しますか？')) return
+  setTodos([])
+}
 
   function addTodo(text) {
     const newTodo = { id: crypto.randomUUID(), text, done: false }
@@ -61,6 +65,10 @@ export default function TodoApp() {
       <button onClick={clearDone} disabled={doneCount === 0}>
         完了済みを削除
       </button>
+      <button onClick={clearAll} disabled={todos.length === 0}>
+  すべて削除
+</button>
+
     </div>
   )
 }
