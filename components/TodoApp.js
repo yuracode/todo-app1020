@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import TodoFilter from './TodoFilter'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
+import { countRemaining } from '@/lib/todos'
 
 const STORAGE_KEY = 'todos'
 
@@ -47,7 +48,7 @@ function clearAll() {
 }
 
   const doneCount = todos.filter((todo) => todo.done).length
-  const remaining = todos.length - doneCount
+  const remaining = countRemaining(todos)
 
   const visibleTodos =
     filter === 'active' ? todos.filter((todo) => !todo.done) : filter === 'done' ? todos.filter((todo) => todo.done) : todos
